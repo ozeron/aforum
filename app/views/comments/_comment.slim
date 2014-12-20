@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-body
+    = comment.content
+  .panel-footer
+    = comment.user.nickname
+    |   |
+    = comment.created_at.strftime "%H:%M:%S %a %Y"

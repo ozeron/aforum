@@ -1,0 +1,19 @@
+- content_for :title do
+  = @discussion.title
+
+.panel.panel-default
+  .panel-heading
+    h1= @discussion.title
+  .panel-body
+    p= @discussion.description
+  .panel-footer.clearfix
+    = @discussion.user.nickname
+    |   |
+    = @discussion.updated_at.strftime "%H:%M:%S %a %Y"
+    .pull-right
+      => link_to 'Edit', edit_discussion_path(@discussion)
+
+      => link_to 'Delete', discussion_path(@discussion), method: :delete
+
+
+= render @discussion.comments

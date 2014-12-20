@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: aforum_development
+
+
+test:
+  <<: *default
+  database: aforum_test
+
+production:
+  <<: *default
+  database: aforum_production
+  username: #your user name
+  password: <%= ENV['AFORUM_DATABASE_PASSWORD'] %>
