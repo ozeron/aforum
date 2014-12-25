@@ -57,7 +57,7 @@ describe DiscussionsController, :type => :controller do
     ##CREATE
     describe '#create' do
       context 'when valid' do
-        let (:valid_discussion) { FactoryGirl.attributes_for(:discussion, user: user)}
+        let (:valid_discussion) { attributes_for(:discussion, user: user)}
         it 'it redirects to the #show action' do
           post :create, discussion: valid_discussion
           expect(response).to redirect_to discussion_path assigns[:discussion]
@@ -68,7 +68,7 @@ describe DiscussionsController, :type => :controller do
         end
       end
       context 'when invalid' do
-        let (:bad_discussion) {FactoryGirl.attributes_for(:discussion, title: nil, user: user)}
+        let (:bad_discussion) { attributes_for(:discussion, title: nil, user: user)}
         it 'renders :new' do
           post :create, discussion: bad_discussion
           expect(response).to render_template :new
@@ -77,7 +77,7 @@ describe DiscussionsController, :type => :controller do
     end
     ##EDIT
     describe '#edit' do
-      let (:discussion) { FactoryGirl.create(:discussion, user: user) }
+      let (:discussion) { create(:discussion, user: user) }
       it 'GET request to be success' do
         get :edit, id: discussion.id
         expect(response).to be_success
@@ -95,7 +95,7 @@ describe DiscussionsController, :type => :controller do
     describe '#update' do
       let (:discussion) { FactoryGirl.create(:discussion, user: user) }
       let (:id) { discussion.id }
-      before(:each) { patch :update, discussion:{** new_values}, id: id }
+      before(:each) { patch :update, discussion: new_values, id: id }
       context 'when valid' do
         let (:new_values)  {  FactoryGirl.attributes_for(:discussion) }
         it 'redirects to #show' do

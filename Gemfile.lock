@@ -5,6 +5,13 @@ GIT
     faker (1.4.3)
       i18n (~> 0.5)
 
+GIT
+  remote: git://github.com/thoughtbot/shoulda-matchers.git
+  revision: 542f715d5af9878d4bfae9faf638b41111be14b8
+  specs:
+    shoulda-matchers (2.8.0.rc1)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -152,6 +159,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.3)
+    rails_stdout_logging (0.0.3)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -189,8 +201,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    shoulda-matchers (2.7.0)
-      activesupport (>= 3.0.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -261,9 +271,10 @@ DEPENDENCIES
   less-rails
   pg
   rails (= 4.1.6)
+  rails_12factor
   rspec-rails (~> 3.0)
   sdoc (~> 0.4.0)
-  shoulda-matchers (~> 2.7.0)
+  shoulda-matchers!
   simple_form
   slim-rails
   spring

@@ -10,7 +10,7 @@ Discussion.destroy_all
 Comment.destroy_all
 
 admin = User.create(nickname: 'admin', password: '12345678', email: 'admin@aforum.net')
-joe = User.create(nickname: 'Joe', password: 'qwertyuiop', email: 'joe@aforum.net')
+joe = User.create(nickname: 'user', password: '12345678', email: 'user@aforum.net')
 
 dis = Discussion.create(title: 'Hello World!', description: 'This is first topic on this forum! Hooray!', user: admin)
 

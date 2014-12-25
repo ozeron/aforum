@@ -5,3 +5,5 @@
     = comment.user.nickname
     |   |
     = comment.created_at.strftime "%H:%M:%S %a %Y"
+    .pull-right
+      = link_to 'Delete', discussion_comment_path( comment.discussion, comment) , method: :delete

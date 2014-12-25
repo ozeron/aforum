@@ -5,9 +5,11 @@ class DiscussionsController < ApplicationController
   end
   def show
     @discussion = Discussion.find params[:id]
+    @comment = Comment.new
   end
   def new
     @discussion = Discussion.new
+    @discussion.comments.build
   end
   def create
     @discussion = Discussion.new discussion_params
@@ -33,6 +35,17 @@ class DiscussionsController < ApplicationController
       render :edit
     end
   end
+  def add_comment
+    @discussion = Discussion.find params[:id]
+    comment =  Comment.initialize_with comment_params, user: current_user, discussion: @discussion
+    if comment.save
+      flash[:notice] = "New Comment succesfully added"
+      redirect_to discussion_path @discussion
+    else
+      flash[:error] = "Error adding new Comment. Try again!"
+      render :show
+    end
+  end
   def destroy
     @discussion = Discussion.find params[:id]
     if @discussion.destroy
@@ -47,5 +60,8 @@ class DiscussionsController < ApplicationController
 
   def discussion_params
     params.require(:discussion).permit(:title,:description)
+  end
+  def comment_params
+    params .require(:discussion).require(:comment).permit(:content)
   end
 end

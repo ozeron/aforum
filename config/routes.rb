@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'sessions' }
   resources :discussions do
-    resources :comments, only: [:show]
+    resources :comments
+    member do
+      patch 'add_comment'
+    end
   end
   root 'discussions#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -17,3 +17,7 @@
 
 
 = render @discussion.comments
+= simple_form_for @discussion, url: add_comment_discussion_url do |f|
+  = f.simple_fields_for Comment.new do |p|
+   = p.input :content, label: 'Add new Comment'
+  = f.button :submit, 'Add Comment'

@@ -12,4 +12,8 @@ module ApplicationHelper
   def not_user_path?
     !user_path?
   end
+
+  def current_nickname
+    current_user.nickname
+  end
 end

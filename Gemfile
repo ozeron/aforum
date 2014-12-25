@@ -28,13 +28,13 @@ gem 'devise'
 # gem 'unicorn'
 
 gem 'capistrano-rails', group: :development
-
+gem 'rails_12factor', group: :production
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
 end
 group :test do
-  gem 'shoulda-matchers', '~> 2.7.0'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   gem 'faker', github: 'stympy/faker'
   gem 'capybara'
   gem 'guard-rspec'

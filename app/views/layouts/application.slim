@@ -29,6 +29,9 @@ html lang="en"
           .nav.navbar-form.navbar-right
              - if not_user_path?
               - if user_signed_in?
+                |
+                 Hello,
+                =<> current_nickname
                 =render partial: "logout"
               - else
                 =render partial: "login"
