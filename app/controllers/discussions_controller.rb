@@ -1,10 +1,10 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @discussions = Discussion.all
+    @discussions = Discussion.includes(:user).all
   end
   def show
-    @discussion = Discussion.find params[:id]
+    @discussion = Discussion.includes(:user, comments: :user).find params[:id]
     @comment = Comment.new
   end
   def new
@@ -35,17 +35,6 @@ class DiscussionsController < ApplicationController
       render :edit
     end
   end
-  def add_comment
-    @discussion = Discussion.find params[:id]
-    comment =  Comment.initialize_with comment_params, user: current_user, discussion: @discussion
-    if comment.save
-      flash[:notice] = "New Comment succesfully added"
-      redirect_to discussion_path @discussion
-    else
-      flash[:error] = "Error adding new Comment. Try again!"
-      render :show
-    end
-  end
   def destroy
     @discussion = Discussion.find params[:id]
     if @discussion.destroy
@@ -62,6 +51,6 @@ class DiscussionsController < ApplicationController
     params.require(:discussion).permit(:title,:description)
   end
   def comment_params
-    params .require(:discussion).require(:comment).permit(:content)
+    params.require(:comment).permit(:content)
   end
 end

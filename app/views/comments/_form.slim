@@ -1,3 +1,6 @@
-= simple_form_for Comment.new do |f|
-  = f.input :content
-  = f.button :submit
+.panel.panel-default
+  = simple_form_for comment, remote: true, url: discussion_comment_url(comment.discussion.id, comment.id ) do |f|
+    .panel-body
+      = f.input :content
+    .panel-footer
+      = f.button :submit

@@ -14,7 +14,7 @@ describe CommentsController, :type => :controller do
         let (:comment) { create(:comment, user: user, discussion: discussion) }
         before(:each) { delete :destroy, id: comment.id, discussion_id: discussion.id }
 
-        it 'redirects to #index' do
+        it 'redirects to discussion path' do
           expect(response).to redirect_to discussion_path discussion
         end
 

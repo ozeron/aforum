@@ -1,2 +1,2 @@
-console.log("#{'comment'+comment.id.inspect}");
-$('#'+"#{'comment'+comment.id.inspect}").html("<% escape_javascript render(partial: 'form', locals: { comment: @comment }) %>");
+var selector = '<%= j "#comment"+@comment.id.inspect %>';
+$(selector).html("<%= escape_javascript render partial: 'form', locals: {comment: @comment} %>");

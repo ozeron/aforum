@@ -1,9 +1,11 @@
-.panel.panel-default
-  .panel-body
-    = comment.content
-  .panel-footer
-    = comment.user.nickname
-    |   |
-    = comment.created_at.strftime "%H:%M:%S %a %Y"
-    .pull-right
-      = link_to 'Delete', discussion_comment_path( comment.discussion, comment) , method: :delete
+div id="#{'comment'+comment.id.inspect}"
+  .panel.panel-default
+    .panel-body
+      = comment.content
+    .panel-footer
+      = comment.user.nickname
+      |   |
+      = comment.created_at.strftime "%H:%M:%S %a %Y"
+      .pull-right
+        => link_to 'Edit', edit_discussion_comment_path(comment.discussion, comment), remote: true, class: "edit-link"
+        = link_to 'Delete', discussion_comment_path(comment.discussion, comment), method: :delete,remote: true, data: {confirm: 'Are you sure?'}

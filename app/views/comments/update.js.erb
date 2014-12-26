@@ -1,0 +1,3 @@
+var selector = '<%= j "#comment"+@comment.id.inspect %>';
+$(selector).html("<%= j render partial: 'comment', locals: {comment: @comment} %>");
+$('#flash-area').html("<%= j  bootstrap_flash %>");

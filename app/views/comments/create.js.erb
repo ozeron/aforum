@@ -1,0 +1,3 @@
+var commentID = '<%= j "comment"+@comment.id.inspect %>';
+$('#comments').append("<%= j render partial: 'comment', locals: {comment: @comment} %>");
+$('#new_comment textarea').val('');

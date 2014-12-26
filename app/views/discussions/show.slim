@@ -7,17 +7,15 @@
   .panel-body
     p= @discussion.description
   .panel-footer.clearfix
-    = @discussion.user.nickname
+    => @discussion.user.nickname
     |   |
-    = @discussion.updated_at.strftime "%H:%M:%S %a %Y"
+    =< @discussion.updated_at.strftime "%H:%M:%S %a %Y"
     .pull-right
       => link_to 'Edit', edit_discussion_path(@discussion)
 
-      => link_to 'Delete', discussion_path(@discussion), method: :delete
+      => link_to 'Delete', discussion_path(@discussion), method: :delete, data: {confirm: 'Are you sure?'}
 
+#comments
+  = render @discussion.comments
 
-= render @discussion.comments
-= simple_form_for @discussion, url: add_comment_discussion_url do |f|
-  = f.simple_fields_for Comment.new do |p|
-   = p.input :content, label: 'Add new Comment'
-  = f.button :submit, 'Add Comment'
+= render partial: 'comments/new_form', locals: {id: @discussion.id}
